@@ -183,11 +183,20 @@ function updateTextAndVisibility() {
   house.style.visibility = "visible";
 }
 
+const party = new Audio("images/blingsound.mp3")
+
+// Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6185">Pixabay</a>
 
 function checkTouch() {
   if (position.x >= 405 && position.x <= 480 && position.y >= 330 && position.y <= 390) {
     console.log("home")
+
+    endingScreen();
   }
+}
+
+function endingScreen (){
+  
 }
 
 // let checkTouch = function(){
