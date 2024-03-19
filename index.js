@@ -123,7 +123,7 @@ let position = { x: 0, y:0 };
 
 function moveUp() {
   const blub = new Audio("images/happy-pop.mp3")
-  position.y -= 15;
+  position.y -= 25;
   woman.style.top = position.y + "px";
   blub.play();
 
@@ -133,7 +133,7 @@ function moveUp() {
 
 function moveDown() {
   const blub = new Audio("images/happy-pop.mp3")
-  position.y += 15;
+  position.y += 25;
   woman.style.top = position.y + "px";
   blub.play();
 
@@ -143,7 +143,7 @@ function moveDown() {
 
 function moveLeft() {
   const blub = new Audio("images/happy-pop.mp3")
-  position.x -= 15;
+  position.x -= 25;
   woman.style.left = position.x + "px";
   blub.play();
 
@@ -153,7 +153,7 @@ function moveLeft() {
 
 function moveRight() {
   const blub = new Audio("images/happy-pop.mp3")
-  position.x += 15;
+  position.x += 25;
   woman.style.left = position.x + "px";
   blub.play();
 
@@ -161,7 +161,9 @@ function moveRight() {
   checkTouch();
 }
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", move);
+
+function move(event){
   if (event.key === "ArrowUp") {
       moveUp();
       updateTextAndVisibility();
@@ -175,7 +177,7 @@ document.addEventListener("keydown", function(event) {
       moveRight();
       updateTextAndVisibility();
   }
-});
+}
 
 function updateTextAndVisibility() {
   text.textContent = "Bring me to the yellow house.";
@@ -183,7 +185,7 @@ function updateTextAndVisibility() {
   house.style.visibility = "visible";
 }
 
-const party = new Audio("images/blingsound.mp3")
+const party = new Audio("images/success-fanfare-trumpets.mp3")
 
 // Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6185">Pixabay</a>
 
@@ -191,12 +193,20 @@ function checkTouch() {
   if (position.x >= 405 && position.x <= 480 && position.y >= 330 && position.y <= 390) {
     console.log("home")
 
-    endingScreen();
+    setTimeout(endingScreen, 100);
   }
 }
 
 function endingScreen (){
+  text.textContent = "Thank you. I am home. You may leave now.";
+  party.play();
+  document.removeEventListener("keydown", move);
+  setTimeout(startScreen, 6000);
   
+}
+
+function startScreen (){
+  location.reload(true);
 }
 
 // let checkTouch = function(){
